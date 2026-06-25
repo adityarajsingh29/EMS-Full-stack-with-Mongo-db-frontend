@@ -1,0 +1,54 @@
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.edit-btn,
+.delete-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+/* Edit Button */
+.edit-btn {
+  background: #ffffff;
+  color: #2563eb;
+  border: 1.5px solid #dbeafe;
+}
+
+.edit-btn:hover {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+}
+
+/* Delete Button */
+.delete-btn {
+  background: #ffffff;
+  color: #dc2626;
+  border: 1.5px solid #fee2e2;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  color: white;
+  border-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.18);
+}
+
+.edit-btn:active,
+.delete-btn:active {
+  transform: scale(0.97);
+}
