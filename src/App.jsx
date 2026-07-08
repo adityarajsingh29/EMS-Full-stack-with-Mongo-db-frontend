@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const API_URL = "https://node-day-2-p01p.onrender.com/employees";
+  const API_URL = "http://localhost:5000/employees";
 
   const [employees, setEmployees] = useState([]);
 
@@ -40,13 +40,16 @@ function App() {
   const addEmployee = async (e) => {
     e.preventDefault();
 
-    await fetch(API_URL, {
+    let res = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     });
+
+    let data = await res.json();
+    console.log("Added Employee:", data);
 
     setFormData({
       name: "",
@@ -59,7 +62,7 @@ function App() {
 
   // Edit Employee
   const editEmployee = (employee) => {
-    setEditingId(employee.id);
+    setEditingId(employee._id);
 
     setFormData({
       name: employee.name,
@@ -93,6 +96,7 @@ function App() {
 
   // Delete Employee
   const deleteEmployee = async (id) => {
+    console.log("Deleting employee with ID:", id); // Debugging line
     await fetch(`${API_URL}/${id}`, {
       method: "DELETE",
     });
@@ -181,7 +185,7 @@ function App() {
       <div className="employee-grid">
         {filteredEmployees.length > 0 ? (
           filteredEmployees.map((employee) => (
-            <div key={employee.id} className="card">
+            <div key={employee._id} className="card">
               <h3>{employee.name}</h3>
 
               <p>
@@ -198,7 +202,7 @@ function App() {
 
               <button
                 className="delete-btn"
-                onClick={() => deleteEmployee(employee.id)}
+                onClick={() => deleteEmployee(employee._id)}
               >
                 Delete
               </button>
